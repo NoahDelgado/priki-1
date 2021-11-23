@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        // Real users
         $default = Role::where('slug','MBR')->firstOrFail();
         $moderator = Role::where('slug','MOD')->firstOrFail();
         foreach (
@@ -43,8 +45,11 @@ class UserSeeder extends Seeder
                 'name' => ucfirst(strtolower($user['fname'])).ucfirst(strtolower($user['lname'])),
                 'fullname' => ucfirst(strtolower($user['fname']))." ".$user['lname'],
                 'email' => ucfirst(strtolower($user['fname'])).".".ucfirst(strtolower($user['lname']))."@cpnv.ch",
-                'password' => password_hash(strtolower($user['lname']), PASSWORD_DEFAULT),
+                'password' => Hash::make(strtolower($user['lname'])),
             ]);
         }
+
+        // and a few fake ones
+        User::factory(10)->create();
     }
 }

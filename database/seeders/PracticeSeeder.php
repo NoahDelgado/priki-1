@@ -7,6 +7,7 @@ use App\Models\Practice;
 use App\Models\PublicationState;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class PracticeSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class PracticeSeeder extends Seeder
      */
     public function run()
     {
+        // Real practices
         foreach ([
             "YAGNI : \"You Aint Gonna Need It\". N'écrivez pas de code dont vous pensez avoir besoin dans le futur, mais dont vous n'avez pas encore besoin. Il s'agit de coder pour des cas d'utilisation futurs imaginaires, et inévitablement le code deviendra du code mort ou devra être réécrit parce que le cas d'utilisation futur s'avère toujours fonctionner légèrement différemment de la façon dont vous l'avez imaginé.",
             "Les tests n'ont pas besoin d'être testés. L'infrastructure, les frameworks et les bibliothèques pour les tests ont besoin de tests. Ne testez pas le navigateur ou les bibliothèques externes, sauf si vous en avez vraiment besoin. Testez le code que vous écrivez, pas celui des autres.",
@@ -27,7 +29,6 @@ class PracticeSeeder extends Seeder
             "Pour les tests unitaires (y compris les tests d'infrastructure), tous les chemins de code doivent être testés. Une couverture à 100 % est un bon point de départ. Il n'est pas possible de couvrir toutes les permutations/combinaisons d'états possibles (explosion combinatoire), il faut donc y réfléchir. Ce n'est que s'il y a une très bonne raison que les chemins de code ne doivent pas être testés. Le manque de temps n'est pas une bonne raison et finit par coûter plus de temps. Parmi les bonnes raisons possibles, on peut citer : l'impossibilité de tester le code (d'une manière significative), l'impossibilité de l'atteindre en pratique ou le fait qu'il soit couvert par un autre test. Le code sans tests est un handicap. Mesurer la couverture et rejeter les RPs qui réduisent le pourcentage de couverture est une façon de s'assurer que vous progressez progressivement dans la bonne direction.",
             "Le code est l'ennemi : il peut se tromper, et il a besoin de maintenance. Écrivez moins de code. Supprimez du code. N'écrivez pas de code dont vous n'avez pas besoin.",
             "Inévitablement, les commentaires de code deviennent des mensonges avec le temps. En pratique, peu de gens mettent à jour les commentaires lorsque les choses changent. Efforcez-vous de rendre votre code lisible et auto-documenté par de bonnes pratiques de nommage et un style de programmation connu.",
-            "Ecrivez de manière défensive. Pensez toujours à ce qui peut mal tourner, à ce qui se passera en cas d'entrée invalide, et à ce qui pourrait échouer, ce qui vous aidera à attraper de nombreux bogues avant qu'ils ne se produisent.",
             "Écrivez de manière défensive. Pensez toujours à ce qui peut mal tourner, à ce qui se passera en cas d'entrée invalide et à ce qui pourrait échouer, ce qui vous aidera à attraper de nombreux bogues avant qu'ils ne se produisent.",
             "La logique est facile à tester en unité si elle est sans état et sans effet secondaire. Décomposez la logique en fonctions distinctes, plutôt que de la mélanger à du code sans état et rempli d'effets secondaires. La séparation du code avec état et du code avec effets secondaires en fonctions plus petites les rend plus faciles à simuler et à tester sans effets secondaires. (Moins de frais généraux pour les tests signifie des tests plus rapides.) Les effets secondaires doivent être testés, mais les tester une fois et les simuler partout ailleurs est généralement un bon modèle.",
             "Les globaux sont mauvais. Les fonctions sont meilleures que les types. Les objets sont probablement meilleurs que les structures de données complexes.",
@@ -47,7 +48,11 @@ class PracticeSeeder extends Seeder
                 'domain_id' => Domain::all()->random()->id,
                 'publication_state_id' => PublicationState::all()->random()->id,
                 'user_id' => User::all()->random()->id,
+                'updated_at' => Carbon::now()->subMinutes(rand(1, 5*24*60))
             ]);
         }
+
+        // and a few fake ones
+        Practice::factory(10)->create();
     }
 }
