@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Priki</title>
 
     <!-- Styles -->
     <style>
@@ -14,8 +14,8 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 
 </head>
-<body class="antialiased">
-<h1>Hello</h1>
+<body class="container-fluid">
+<h1 class="bg-gray-100 p-5 text-center">Priki</h1>
 @yield('content')
 </body>
 </html>
