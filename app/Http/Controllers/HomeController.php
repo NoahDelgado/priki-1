@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index($nbDays)
+    public function index($nbDays = 5)
     {
-        dd($nbDays);
-        return view("home")->with (['filtervalue' => $nbDays ? $nbDays : 5]);
+        return view("home")->with (['filtervalue' => $nbDays]);
     }
 }

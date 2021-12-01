@@ -14,8 +14,6 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('home')->with('filtervalue',5);
-});
+Route::get('/', [HomeController::class,'index']);
 
 Route::get('/home/{nbDays}', [HomeController::class,'index']);
