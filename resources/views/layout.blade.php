@@ -12,6 +12,7 @@
     </style>
 
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/app.js" defer></script>
 
 </head>
 <body class="container-fluid">
