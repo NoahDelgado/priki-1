@@ -1,5 +1,7 @@
 require('./bootstrap');
 
-numDays.addEventListener('change', function () {
-    window.location='/home/'+numDays.value
-})
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
