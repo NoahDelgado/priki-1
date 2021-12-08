@@ -15,4 +15,16 @@ class Domain extends Model
         'name',
         'slug'
     ];
+
+    public function practices()
+    {
+        return $this->hasMany(Practice::class);
+    }
+
+    public function publishedPractices()
+    {
+        return $this->practices()->whereHas('publicationState', function ($q) {
+            $q->where('slug','PUB');
+        })->get();
+    }
 }
