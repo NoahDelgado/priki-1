@@ -27,10 +27,10 @@
     <div class="col-4">
         @if (Auth::check())
             <p>{{ Auth::user()->name }}</p>
-            <p>{{ Auth::user()->fullname }}</p>
+            <p class="text-xs text-light">{{ Auth::user()->fullname }}</p>
             <form method="post" action="logout">
                 @csrf
-                <button type="submit" class="btn btn-primary">Déco</button>
+                <button type="submit" class="btn btn-primary btn-sm">Déco</button>
             </form>
         @else
             <a class="btn btn-primary" href="login">Connexion</a>
