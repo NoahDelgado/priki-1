@@ -24,5 +24,11 @@ return [
     'Remember me' => 'Se souvenir de moi',
     'Forgot your password?' => 'Mot de passe oublié ?',
     'Log in' => 'Connexion',
+    'Create account' => 'Créer un compte',
+    'UserName' => 'Nom d\'utilisateur (pseudo)',
+    'FullName' => 'Vrai nom',
+    'Confirm Password' => 'Confirmation de mot de passe',
+    'Already registered?' => 'Déjà enregistré ?',
+    'Register' => 'S\'enregistrer',
 
 ];
