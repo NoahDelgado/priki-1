@@ -10,7 +10,7 @@
     <link href="/css/app.css" rel="stylesheet">
 
     <script src="/js/app.js" defer></script>
-
+    @livewireStyles
 </head>
 <body class="container-fluid">
 <div class="bg-info p-3 text-center row">
@@ -38,5 +38,6 @@
     </div>
 </div>
 @yield('content')
+@livewireScripts
 </body>
 </html>
