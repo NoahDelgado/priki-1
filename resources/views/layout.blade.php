@@ -10,11 +10,12 @@
     <link href="/css/app.css" rel="stylesheet">
 
     <script src="/js/app.js" defer></script>
+    @stack('page-specific-scripts')
     @livewireStyles
 </head>
 <body class="container-fluid">
 <div class="bg-info p-3 text-center row">
-    <div class="title col-4">Priki</div>
+    <a href="/" class="col-4"><div class="title">Priki</div></a>
     <div class="form-group col-4">
         <label class="control-label">Domaine:</label>
         <select id="dpdDomain">
