@@ -7,3 +7,6 @@
         <livewire:practice :practice="$practice"/>
     @endforeach
 @endsection
+@push('page-specific-scripts')
+    <script src="/js/homepage.js" defer></script>
+@endpush
