@@ -21,15 +21,32 @@ class Practice extends Model
     }
 
     /**
-     * Returns all practicies that have been modified within the last nbDays and that are in published state
+     * Selection of published practices
+     * @return mixed
+     */
+    static function published()
+    {
+        return self::whereHas('publicationState', function ($q) {
+            $q->where('slug', 'PUB');
+        });
+    }
+
+    /**
+     * All published practices
+     * @return mixed
+     */
+    static function allPublished() {
+        return self::published()->get();
+    }
+
+    /**
+     * Returns all practices that have been modified within the last nbDays and that are in published state
      * @param $nbDays
      * @return mixed
      */
-    static function publishedModifiedOnes($nbDays)
+    static function publishedAndRecentlyUpdated($nbDays)
     {
-        return self::where('updated_at', '>=', Carbon::now()->subDays($nbDays))
-            ->whereHas('publicationState', function ($q) {
-                $q->where('slug','PUB');
-            })->get();
+        return self::published()->where('updated_at', '>=', Carbon::now()->subDays($nbDays))->get();
     }
+
 }
