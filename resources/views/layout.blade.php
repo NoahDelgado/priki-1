@@ -19,9 +19,9 @@
     <div class="form-group col-4">
         <label class="control-label">Domaine:</label>
         <select id="dpdDomain">
-            <option value="0">Tous (xxx)</option>
+            <option value="0">Tous ({{ \App\Models\Practice::allPublished()->count() }})</option>
             @foreach(\App\Models\Domain::all() as $domain)
-                <option value="{{ $domain->id }}">{{ $domain->name }} (xxx)</option>
+                <option value="{{ $domain->id }}">{{ $domain->name }} ({{ $domain->publishedPractices()->count() }})</option>
             @endforeach
         </select>
     </div>
