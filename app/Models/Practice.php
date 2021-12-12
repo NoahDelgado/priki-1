@@ -24,6 +24,11 @@ class Practice extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function opinions()
+    {
+        return $this->hasMany(Opinion::class);
+    }
+
     public function publicationState()
     {
         return $this->belongsTo(PublicationState::class);
