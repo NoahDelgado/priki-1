@@ -32,7 +32,8 @@
         @forelse($practice->opinions as $opinion)
             <div class="row">
                 <div class="col-2 small text-gray-500">
-                    {{ Carbon\Carbon::make($practice->updated_at)->isoformat('D MMM YY') }}, <a href="/user/{{ $opinion->user->id }}">{{ $opinion->user->name }}</a>
+                    {{ Carbon\Carbon::make($practice->updated_at)->isoformat('D MMM YY') }}, <a href="/user/{{ $opinion->user->id }}">{{ $opinion->user->name }}</a><br>
+                    {{ $opinion->comments()->count() }} commentaires, dont {{ $opinion->upvotes() }} positifs et {{ $opinion->downvotes() }} négatifs
                 </div>
                 <div class="col-10">
                     {{ $opinion->description }}
