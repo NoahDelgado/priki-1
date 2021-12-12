@@ -13,4 +13,8 @@ class Practice extends Component
     {
         return view('livewire.practice');
     }
+
+    public function show($id) {
+        return $this->redirect("/practice/$id");
+    }
 }
