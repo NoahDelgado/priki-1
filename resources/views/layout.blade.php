@@ -7,6 +7,9 @@
     <title>Priki</title>
 
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="/fontawesome/css/solid.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
 
     <script src="/js/app.js" defer></script>

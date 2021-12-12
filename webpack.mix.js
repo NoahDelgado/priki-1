@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/homepage.js', 'public/js')
+    .copyDirectory('node_modules/@fortawesome/fontawesome-free','public/fontawesome')
     .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),
