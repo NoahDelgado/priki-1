@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            //TruncateAllTables::class,
+            TruncateAllTables::class,
             DomainSeeder::class,
             PublicationStateSeeder::class,
             PublicationStateTransitionSeeder::class,
@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             PracticeSeeder::class,
             OpinionSeeder::class,
             ReferenceSeeder::class,
-            OpinionReferenceSeeder::class
+            OpinionReferenceSeeder::class,
+            OpinionFeedbackSeeder::class
         ]);
     }
 }
