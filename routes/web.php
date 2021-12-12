@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\PracticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,11 @@ use App\Http\Controllers\DomainController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-Route::get('/home/{nbDays}', [HomeController::class,'index']);
+    Route::get('/home/{nbDays}', [HomeController::class, 'index']);
 
-Route::get('/domain/{id}',[DomainController::class,'index']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/domain/{id}', [DomainController::class, 'index']);
+    Route::get('/practice/{id}', [PracticeController::class, 'show']);
+});
 
 require __DIR__.'/auth.php';

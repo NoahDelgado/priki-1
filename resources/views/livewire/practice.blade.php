@@ -1,5 +1,5 @@
 <div>
-    <div class="card p-2 m-2 border border-2 border-dark shadow">
+    <div class="card p-2 m-2 border border-2 border-dark shadow" wire:click="show({{ $practice->id }})">
         {{ $practice->description }}
         <div class="text-xs text-right">
             @if ($showDomain)

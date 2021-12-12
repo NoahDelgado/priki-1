@@ -15,6 +15,15 @@ class Practice extends Model
         return $this->belongsTo(Domain::class);
     }
 
+    /**
+     * The user who originally entered the practice in the system
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function submitter()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function publicationState()
     {
         return $this->belongsTo(PublicationState::class);
@@ -35,7 +44,8 @@ class Practice extends Model
      * All published practices
      * @return mixed
      */
-    static function allPublished() {
+    static function allPublished()
+    {
         return self::published()->get();
     }
 

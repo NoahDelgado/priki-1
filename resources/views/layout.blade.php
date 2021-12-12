@@ -29,7 +29,7 @@
         @if (Auth::check())
             <p>{{ Auth::user()->name }}</p>
             <p class="text-xs text-light">{{ Auth::user()->fullname }}</p>
-            <form method="post" action="logout">
+            <form method="post" action="/logout">
                 @csrf
                 <button type="submit" class="btn btn-primary btn-sm">Déco</button>
             </form>
