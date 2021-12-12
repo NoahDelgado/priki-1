@@ -15,7 +15,7 @@ use App\Http\Controllers\DomainController;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::get('/home/{nbDays}', [HomeController::class,'index']);
 

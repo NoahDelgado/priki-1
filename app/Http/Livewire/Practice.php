@@ -7,6 +7,7 @@ use Livewire\Component;
 class Practice extends Component
 {
     public $practice;
+    public $showDomain; // we want to hide the domain name in some contexts
 
     public function render()
     {

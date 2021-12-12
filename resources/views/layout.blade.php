@@ -21,7 +21,7 @@
         <select id="dpdDomain">
             <option value="0">Tous ({{ \App\Models\Practice::allPublished()->count() }})</option>
             @foreach(\App\Models\Domain::all() as $domain)
-                <option value="{{ $domain->id }}">{{ $domain->name }} ({{ $domain->publishedPractices()->count() }})</option>
+                <option value="{{ $domain->id }}" {{ Session::get('domain') == $domain->id ? 'selected' : '' }}>{{ $domain->name }} ({{ $domain->publishedPractices()->count() }})</option>
             @endforeach
         </select>
     </div>
