@@ -16,7 +16,7 @@ class Opinion extends Model
 
     public function comments()
     {
-        return $this->belongsToMany(User::class, 'user_opinion')->withPivot('comments', 'points');
+        return $this->belongsToMany(User::class, 'user_opinion')->withPivot('comment', 'points');
     }
 
     public function upvotes()

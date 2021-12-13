@@ -38,6 +38,19 @@
                 <div class="col-10">
                     {{ $opinion->description }}
                 </div>
+                @foreach ($opinion->comments as $comment)
+                    <div class="col-3 small text-gray-500 text-right">
+                        {{ $comment->name }}
+                        @if ($comment->pivot->points > 0)
+                            <i class="fa fa-thumbs-up"></i>
+                        @elseif($comment->pivot->points < 0)
+                            <i class="fa fa-thumbs-down"></i>
+                        @endif
+                    </div>
+                    <div class="col-7 small text-gray-500">
+                        {{ $comment->pivot->comment }}
+                    </div>
+                @endforeach
             </div>
         @empty
             <p>Aucun</p>
