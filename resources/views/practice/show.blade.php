@@ -37,6 +37,22 @@
                 </div>
                 <div class="col-10">
                     {{ $opinion->description }}
+                    @if ($opinion->references()->count() > 0)
+                        <hr>
+                        <div class="small text-gray-500 mb-2 text-right">
+                            Refs:
+                            @foreach ($opinion->references as $reference)
+                                @if ($reference->url)
+                                    <a href="{{ $reference->url }}" target="_blank">{{ $reference->description }}</a>
+                                @else
+                                    {{ $reference->description }}
+                                @endif
+                                @if (!$loop->last)
+                                    ,
+                                @endif
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
                 <div id="toggled-comment-{{ $opinion->id }}" class="d-none">
                     @foreach ($opinion->comments as $comment)
@@ -49,7 +65,7 @@
                                     <i class="fa fa-thumbs-down"></i>
                                 @endif
                             </div>
-                            <div class="col-7 small text-gray-500 mb-2">
+                            <div class="col-9 small text-gray-500 mb-2">
                                 {{ $comment->pivot->comment }}
                             </div>
                         </div>

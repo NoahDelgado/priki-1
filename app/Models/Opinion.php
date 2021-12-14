@@ -14,17 +14,37 @@ class Opinion extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Comments registered about an opinion
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function comments()
     {
         return $this->belongsToMany(User::class, 'user_opinion')->withPivot('comment', 'points');
     }
 
+    /**
+     * Sum of all upvotes (assumption is made that upvote is one point)
+     * @return int
+     */
     public function upvotes()
     {
         return $this->comments()->wherePivot('points', '>', 0)->count();
     }
+
+    /**
+     * Sum of all downvotes (assumption is made that downvote is one point)
+     * @return int
+     */
     public function downvotes()
     {
         return $this->comments()->wherePivot('points', '<', 0)->count();
+    }
+
+    /**
+     * References
+     */
+    public function references() {
+        return $this->belongsToMany(Reference::class);
     }
 }
