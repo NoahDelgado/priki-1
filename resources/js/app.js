@@ -14,6 +14,6 @@ dpdDomain.addEventListener('change', function () {
 // Accordions
 document.querySelectorAll('.toggling').forEach(function(el) {
     el.addEventListener('click', function (evt) {
-        document.getElementById('toggled'+el.dataset.toggleid).classList.toggle('d-none')
+        document.getElementById('toggled-'+el.dataset.togglescope+'-'+el.dataset.toggleid).classList.toggle('d-none')
     })
 });
