@@ -35,11 +35,15 @@ class ReferenceController extends Controller
      */
     public function store(Request $request)
     {
-        $reference = new Reference();
-        $reference->description = $request->input('description');
-        $reference->url = $request->input('url');
-        $reference->save();
-        return redirect('/references')->with('success','Référence ajoutée');
+        try {
+            $reference = new Reference();
+            $reference->description = $request->input('description');
+            $reference->url = $request->input('url');
+            $reference->save();
+            return redirect('/references')->with('success','Référence ajoutée');
+        } catch (\Exception $e) {
+            return redirect('/references')->with('error',"La référence n'a pas pu être ajoutée");
+        }
     }
 
     /**
