@@ -29,6 +29,16 @@ class Practice extends Model
         return $this->hasMany(Opinion::class);
     }
 
+    /**
+     * Returns the opinion of the given user about this practice
+     * @param User $user
+     * @return Opinion
+     */
+    public function opinionOf (User $user) : ?Opinion
+    {
+        return $this->opinions()->where('user_id',$user->id)->first('description');
+    }
+
     public function publicationState()
     {
         return $this->belongsTo(PublicationState::class);

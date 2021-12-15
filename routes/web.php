@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\PracticeController;
 use \App\Http\Controllers\ReferenceController;
+use \App\Http\Controllers\OpinionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/domain/{id}', [DomainController::class, 'index']);
     Route::get('/practice/{id}', [PracticeController::class, 'show']);
     Route::resource('references', ReferenceController::class);
+    Route::post('/opinion',[OpinionController::class,'store']);
 });
 
 require __DIR__.'/auth.php';
