@@ -12,5 +12,6 @@
                 @endif
             </div>
         @endforeach
+        <a href="/references/create" class="btn btn-success btn-sm">Ajouter une nouvelle référence</a>
     </div>
 @endsection
