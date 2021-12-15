@@ -3,7 +3,9 @@
     @forelse($opinions as $opinion)
         <div class="row">
             <div class="col-2 small text-gray-500 toggling mb-2" data-target="opinions">
-                <div>{{ Carbon\Carbon::make($opinion->updated_at)->isoformat('D MMM YY') }}, <a href="/user/{{ $opinion->user->id }}">{{ $opinion->user->name }}</a></div>
+                <div class="{{ ($opinion->user->id == Auth::user()->id) ? 'bg-warning' : '' }}">
+                    {{ Carbon\Carbon::make($opinion->updated_at)->isoformat('D MMM YY') }}, <a href="/user/{{ $opinion->user->id }}">{{ $opinion->user->name }}</a>
+                </div>
                 <div class="text-right">{{ $opinion->comments()->count() }} <i class="fa fa-comments"></i> ( {{ $opinion->upvotes() }} <i class="fa fa-thumbs-up"></i> {{ $opinion->downvotes() }} <i class="fa fa-thumbs-down"></i> )</div>
             </div>
             <div class="col-10">

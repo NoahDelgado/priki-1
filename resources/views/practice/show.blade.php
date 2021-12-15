@@ -31,6 +31,8 @@
 
         <x-opinion-list :opinions="$practice->opinions"/>
 
-        <x-opinion-form :on="$practice->id"/>
+        @if (!$practice->opinionOf(Auth::user()))
+            <x-opinion-form :on="$practice->id"/>
+        @endif
     </div>
 @endsection
