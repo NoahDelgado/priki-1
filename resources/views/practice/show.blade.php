@@ -4,9 +4,9 @@
     <div class="container p-3">
         <div class="row text-xl">
             <p>{{ $practice->description }}</p>
-            <p class="text-right"><i class="fa fa-info-circle toggling float-right" data-togglescope="description" data-toggleid="0"></i></p>
+            <p class="text-right"><i class="fa fa-info-circle toggling float-right" data-target="details"></i></p>
         </div>
-        <div id="toggled-description-0" class="d-none">
+        <div id="details" class="d-none">
             <div class="row">
                 <div class="col-1 border bg-light">Domaine</div>
                 <div class="col-11">{{ $practice->domain->name }}</div>
@@ -31,7 +31,7 @@
         <div class="h5">Opinions</div>
         @forelse($practice->opinions as $opinion)
             <div class="row">
-                <div class="col-2 small text-gray-500 toggling mb-2" data-togglescope="comment" data-toggleid="{{ $opinion->id }}">
+                <div class="col-2 small text-gray-500 toggling mb-2" data-target="opinions">
                     <div>{{ Carbon\Carbon::make($practice->updated_at)->isoformat('D MMM YY') }}, <a href="/user/{{ $opinion->user->id }}">{{ $opinion->user->name }}</a></div>
                     <div class="text-right">{{ $opinion->comments()->count() }} <i class="fa fa-comments"></i> ( {{ $opinion->upvotes() }} <i class="fa fa-thumbs-up"></i> {{ $opinion->downvotes() }} <i class="fa fa-thumbs-down"></i> )</div>
                 </div>
@@ -54,7 +54,7 @@
                         </div>
                     @endif
                 </div>
-                <div id="toggled-comment-{{ $opinion->id }}" class="d-none">
+                <div id="opinions" class="d-none">
                     @foreach ($opinion->comments as $comment)
                         <div class="row">
                             <div class="col-3 small text-gray-500 text-right">
