@@ -44,6 +44,7 @@
         @endif
     </div>
 </div>
+@include('flashmessage')
 @yield('content')
 @livewireScripts
 </body>

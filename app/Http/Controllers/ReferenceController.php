@@ -39,7 +39,7 @@ class ReferenceController extends Controller
         $reference->description = $request->input('description');
         $reference->url = $request->input('url');
         $reference->save();
-        return redirect('/references');
+        return redirect('/references')->with('success','Référence ajoutée');
     }
 
     /**
