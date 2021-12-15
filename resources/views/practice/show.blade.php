@@ -30,5 +30,7 @@
         </div>
 
         <x-opinion-list :opinions="$practice->opinions"/>
+
+        <x-opinion-form :on="$practice->id"/>
     </div>
 @endsection
