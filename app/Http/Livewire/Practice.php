@@ -16,6 +16,6 @@ class Practice extends Component
 
     public function show($id)
     {
-        return $this->redirect("/practice/$id");
+        return $this->redirect("/practices/$id");
     }
 }

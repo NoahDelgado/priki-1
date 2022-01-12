@@ -23,7 +23,8 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/domain/{id}', [DomainController::class, 'index']);
-    Route::get('/practice/{id}', [PracticeController::class, 'show']);
+    Route::get('/practices/all', [PracticeController::class, 'showAll']);
+    Route::get('/practices/{id}', [PracticeController::class, 'show']);
     Route::resource('references', ReferenceController::class);
     Route::post('/opinion',[OpinionController::class,'store']);
 });

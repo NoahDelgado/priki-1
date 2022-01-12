@@ -30,6 +30,7 @@
     </div>
     <div class="col-3">
         <a href="/references" class="btn btn-secondary btn-sm">Références</a>
+        <a href="/practices/all" class="btn btn-secondary btn-sm">Toutes les pratiques</a>
     </div>
     <div class="col-3">
         @if (Auth::check())

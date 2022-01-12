@@ -13,4 +13,9 @@ class PracticeController extends Controller
 
         return view('practice.show')->with(['practice' => $practice]);
     }
+
+    public function showAll()
+    {
+        return view('practice.list_all')->with(['practices' => Practice::all()]);
+    }
 }
