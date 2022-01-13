@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Practice;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class PracticeController extends Controller
 {
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $practice = Practice::find($id);
-        if ($practice->publicationState->slug != 'PUB') return redirect(route('home')); // TODO remove this test on slug that doesn't belong here! define a policy instead
+        if ($request->user()->cannot('view',$practice)) return redirect(route('home')); // TODO remove this test on slug that doesn't belong here! define a policy instead
 
         return view('practice.show')->with(['practice' => $practice]);
     }
