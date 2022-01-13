@@ -8,6 +8,7 @@ class Practice extends Component
 {
     public $practice;
     public $showDomain; // we want to hide the domain name in some contexts
+    public $showState;  // we want to hide the state name in some contexts
 
     public function render()
     {
