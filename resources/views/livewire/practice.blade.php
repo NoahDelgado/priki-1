@@ -5,6 +5,9 @@
             @if ($showDomain)
                 Domaine: {{ $practice->domain->name }},
             @endif
+            @if ($showState)
+                Etat: {{ $practice->publicationState->name }},
+            @endif
             mis à jour: {{ Carbon\Carbon::make($practice->updated_at)->isoformat('D MMMM Y') }}
         </div>
     </div>

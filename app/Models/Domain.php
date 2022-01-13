@@ -18,13 +18,24 @@ class Domain extends Model
 
     public function practices()
     {
-        return $this->hasMany(Practice::class);
+        return $this->hasMany(Practice::class)->orderBy('publication_state_id');
+    }
+
+    /**
+     * Get the practices of the domain ordered on the slug value of their state (for now)
+     * @return mixed
+     */
+    public function practicesOrderedByState()
+    {
+        return $this->practices->sortBy(function($p) {
+            return $p->publicationState->slug;
+        });
     }
 
     public function publishedPractices()
     {
         return $this->practices()->whereHas('publicationState', function ($q) {
-            $q->where('slug','PUB');
+            $q->where('slug', 'PUB');
         })->get();
     }
 }

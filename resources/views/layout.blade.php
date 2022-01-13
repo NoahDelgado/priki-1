@@ -18,7 +18,9 @@
 </head>
 <body class="container-fluid">
 <div class="bg-info p-3 text-center row">
-    <a href="/" class="col-3"><div class="title">Priki</div></a>
+    <a href="/" class="col-3">
+        <div class="title">Priki</div>
+    </a>
     <div class="form-group col-3">
         <label class="control-label">Domaine:</label>
         <select id="dpdDomain">
@@ -30,10 +32,14 @@
     </div>
     <div class="col-3">
         <a href="/references" class="btn btn-secondary btn-sm">Références</a>
+        @can ('list-all-practices',Auth::user())
+            <a href="/practices/all" class="btn btn-secondary btn-sm">Toutes les pratiques</a>
+        @endcan
     </div>
     <div class="col-3">
         @if (Auth::check())
             <p>{{ Auth::user()->name }}</p>
+            <p class="text-xs text-light">{{ Auth::user()->role->name }}</p>
             <p class="text-xs text-light">{{ Auth::user()->fullname }}</p>
             <form method="post" action="/logout">
                 @csrf
