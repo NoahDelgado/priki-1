@@ -32,10 +32,10 @@ class PracticePolicy
     public function view(User $user, Practice $practice)
     {
         switch ($user->role->slug) {
-            case "MOD":
+            case "MOD": // Moderators can see everything
                 return true;
                 break;
-            default:
+            default: // others can only see what is published
                 return $practice->publicationState->slug === "PUB";
         }
     }
