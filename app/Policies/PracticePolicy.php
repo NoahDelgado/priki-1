@@ -98,4 +98,21 @@ class PracticePolicy
     {
         //
     }
+
+    /**
+     * Users that publish a practice MUST be moderators who have given their opinion about the practice
+     * @param Practice $practice
+     * @param User $user
+     * @return bool
+     */
+    public function publish(User $user, Practice $practice)
+    {
+        if ($user->role->slug != 'MOD') return false; // User must be moderator
+        if ($practice->publicationState->slug != 'PRO') return false; // Practice must be proposed
+        if ($practice->opinionOf($user)) { // User must have spoken
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -34,6 +34,9 @@ class PracticeController extends Controller
     public function publish(Request $request)
     {
         $practice = Practice::find($request->input('practice'));
+        if ($request->user()->cannot('publish', $practice)) {
+            abort(403);
+        }
         $practice->publish();
         return redirect(route('home'))->with('success',"Pratique publiée");
     }
