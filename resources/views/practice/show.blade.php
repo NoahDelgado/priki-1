@@ -26,6 +26,9 @@
             <div class="row">
                 <div class="col-1 border bg-light">Etat</div>
                 <div class="col-11">{{ $practice->publicationState->name }}</div>
+                @can ('publish', $practice)
+                    <x-publish-practice-form :id="$practice->id"/>
+                @endcan
             </div>
         </div>
 

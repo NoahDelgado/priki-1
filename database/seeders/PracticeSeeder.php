@@ -51,8 +51,12 @@ class PracticeSeeder extends Seeder
                 'updated_at' => Carbon::now()->subMinutes(rand(1, 5*24*60))
             ]);
         }
-
-        // and a few fake ones
-        // Practice::factory(10)->create();
+        // tilt the scale towards more published practices
+        $pub = PublicationState::where('slug','PUB')->first();
+        for ($i=0; $i < 7; $i++) {
+            $p = Practice::all()->random();
+            $p->publicationState()->associate($pub);
+            $p->save();
+        }
     }
 }

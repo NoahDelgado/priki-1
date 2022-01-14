@@ -56,6 +56,15 @@ class Practice extends Model
     }
 
     /**
+     * Put the practice in published state
+     */
+    public function publish()
+    {
+        $this->publicationState()->associate(PublicationState::where('slug','PUB')->first());
+        $this->save();
+    }
+
+    /**
      * All published practices
      * @return mixed
      */
