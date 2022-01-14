@@ -42,11 +42,13 @@ class OpinionSeeder extends Seeder
                      "Eussiez-vous eu, d'ailleurs, l'invention qu'il faut Pour pouvoir là, devant ces nobles galeries, Me servir toutes ces folles plaisanteries,",
                      "Que vous n'en eussiez pas articulé le quart De la moitié du commencement d'une, car Je me les sers moi-même, avec assez de verve, Mais je ne permets pas qu'un autre me les serve.",
                  ] as $opinion) {
-            Opinion::create([
-                'description' => $opinion,
-                'practice_id' => Practice::all()->random()->id,
-                'user_id' => User::all()->random()->id
-            ]);
+            try {
+                Opinion::create([
+                    'description' => $opinion,
+                    'practice_id' => Practice::all()->random()->id,
+                    'user_id' => User::all()->random()->id
+                ]);
+            } catch (\Exception $e) {}
         }
 }
 }
