@@ -24,6 +24,7 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::middleware(['auth'])->group(function () {
     Route::get('/domain/{id}', [DomainController::class, 'index']);
     Route::get('/practices/all', [PracticeController::class, 'showAll']);
+    Route::post('/practices/publish', [PracticeController::class, 'publish'])->name('practices.publish');
     Route::get('/practices/{id}', [PracticeController::class, 'show']);
     Route::resource('references', ReferenceController::class);
     Route::post('/opinion',[OpinionController::class,'store']);

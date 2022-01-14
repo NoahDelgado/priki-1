@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Practice;
+use App\Models\PublicationState;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -23,5 +24,17 @@ class PracticeController extends Controller
             abort(403);
         }
         return view('practice.list_all')->with(['practices' => Practice::all()]);
+    }
+
+    /**
+     * Publish a practice
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function publish(Request $request)
+    {
+        $practice = Practice::find($request->input('practice'));
+        $practice->publish();
+        return redirect(route('home'))->with('success',"Pratique publiée");
     }
 }
