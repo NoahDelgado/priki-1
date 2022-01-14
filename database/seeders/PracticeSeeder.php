@@ -51,7 +51,7 @@ class PracticeSeeder extends Seeder
                 'updated_at' => Carbon::now()->subMinutes(rand(1, 5*24*60))
             ]);
             // tilt the scale towards more published practices
-            for ($i=0; $i < 10; $i++) {
+            for ($i=0; $i < 7; $i++) {
                 $p = Practice::all()->random();
                 $p->publicationState()->associate(PublicationState::where('slug','PUB')->first());
                 $p->save();
