@@ -53,13 +53,9 @@ class PracticeSeeder extends Seeder
         }
         // tilt the scale towards more published practices
         $pub = PublicationState::where('slug','PUB')->first();
-        var_dump($pub);
         for ($i=0; $i < 7; $i++) {
-            echo "------------- $i\n";
             $p = Practice::all()->random();
-            var_dump($p);echo "\n\n";
             $p->publicationState()->associate($pub);
-            var_dump($p);
             $p->save();
         }
     }
