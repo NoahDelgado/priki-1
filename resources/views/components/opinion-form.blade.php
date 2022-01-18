@@ -1,11 +1,18 @@
-<div>
-    <form action="/opinion" method="post">
-        @csrf
-        <input type="hidden" value="{{ $practice_id }}" name="practice">
-        <div class="form-group m-4">
-            <label for="opinion">Mon opinion à ce sujet:</label>
-            <textarea id="opinion" name="opinion" class="form-control" required></textarea>
-            <button type="submit" class="btn btn-primary">Soumettre</button>
+<div class="row">
+    <div class="col-2 small text-gray-500 toggling mb-2" data-target="opinions">
+        <div class="bg-warning">
+            Mon opinion:
         </div>
-    </form>
+    </div>
+    <div class="col-10 row">
+        <form action="/opinion" method="post">
+            @csrf
+            <input type="hidden" value="{{ $practice_id }}" name="practice">
+            <div class="row">
+                <textarea id="opinion" name="opinion" class="col-10" required></textarea>
+                <button type="submit" class="btn btn-sm btn-primary col-2">Soumettre</button>
+            </div>
+        </form>
+    </div>
 </div>
+
