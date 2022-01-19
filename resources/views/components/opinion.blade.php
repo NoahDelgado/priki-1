@@ -59,7 +59,12 @@
                     @csrf
                     <input type="hidden" value="{{ $opinion->id }}" name="opinion">
                     <div class="row">
-                        <input type="text" name="comment" class="col-10" required></input>
+                        <input type="text" name="comment" class="col-8" required></input>
+                        <div class="col-3">
+                            <input type="radio" name="vote" value="-1" /><i class="fa fa-thumbs-down ml-1 mt-1 mr-3"></i>
+                            <input type="radio" name="vote" value="0" checked /><i class="fa fa-minus ml-1 mt-1 mr-3"></i>
+                            <input type="radio" name="vote" value="1" /><i class="fa fa-thumbs-up ml-1 mr-3"></i>
+                        </div>
                         <button type="submit" class="btn btn-sm btn-light col-1">Ok</button>
                     </div>
                 </form>

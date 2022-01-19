@@ -29,7 +29,7 @@ class OpinionController extends Controller
     public function comment (Request $request)
     {
         $opinion = Opinion::find($request->input('opinion'));
-        $opinion->comments()->attach(Auth::user(),['comment' => $request->input('comment')]);
+        $opinion->comments()->attach(Auth::user(),['comment' => $request->input('comment'), 'points' => $request->input('vote')]);
         return redirect('/practices/'.$opinion->practice->id)->with('success',"C'est noté!!");
     }
 }
