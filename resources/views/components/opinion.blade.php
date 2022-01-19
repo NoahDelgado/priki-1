@@ -6,7 +6,8 @@
         <div class="text-right">{{ $opinion->comments()->count() }} <i class="fa fa-comments"></i> ( {{ $opinion->upvotes() }} <i class="fa fa-thumbs-up"></i> {{ $opinion->downvotes() }} <i class="fa fa-thumbs-down"></i> )</div>
     </div>
     <div class="col-10">
-        {{ $opinion->description }}
+    {{ $opinion->description }}
+    <!-- References backing this opinions -->
         @if ($opinion->references()->count() > 0)
             <hr>
             <div class="small text-gray-500 mb-2 text-right">
@@ -24,6 +25,8 @@
             </div>
         @endif
     </div>
+
+    <!-- Comments made by users on that opinion -->
     <div id="opinions" class="d-none">
         @foreach ($opinion->comments as $comment)
             <div class="row">
@@ -41,4 +44,26 @@
             </div>
         @endforeach
     </div>
+
+    <!-- My comment on that opinion -->
+    @if (!$opinion->isCommentedBy(Auth::user()))
+        <p class="toggling ml-5 pl-5" data-target="divComment{{ $opinion->id }}"><i class="fa fa-comments bg-warning"></i></p>
+        <div id="divComment{{ $opinion->id }}" class="row d-none">
+            <div class="col-2 small text-gray-500 toggling mb-2" data-target="opinions">
+                <div class="bg-warning">
+                    Mon commentaire à {{ $opinion->user->name }}:
+                </div>
+            </div>
+            <div class="col-10 row">
+                <form action="/opinion/comment" method="post">
+                    @csrf
+                    <input type="hidden" value="{{ $opinion->id }}" name="opinion">
+                    <div class="row">
+                        <input type="text" name="comment" class="col-10" required></input>
+                        <button type="submit" class="btn btn-sm btn-light col-1">Ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endif
 </div>

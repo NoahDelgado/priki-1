@@ -23,6 +23,16 @@ class Opinion extends Model
         return $this->belongsToMany(User::class, 'user_opinion')->withPivot('comment', 'points');
     }
 
+    public function isCommentedBy(User $user)
+    {
+        return false;
+    }
+
+    public function practice()
+    {
+        return $this->belongsTo(Practice::class);
+    }
+
     /**
      * Sum of all upvotes (assumption is made that upvote is one point)
      * @return int

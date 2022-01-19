@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mt-3">
     <div class="col-2 small text-gray-500 toggling mb-2" data-target="opinions">
         <div class="bg-warning">
             Mon opinion:

@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/practices/{id}', [PracticeController::class, 'show']);
     Route::resource('references', ReferenceController::class);
     Route::post('/opinion',[OpinionController::class,'store']);
+    Route::post('/opinion/comment',[OpinionController::class,'comment']);
 });
 
 require __DIR__.'/auth.php';
