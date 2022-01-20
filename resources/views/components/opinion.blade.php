@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-2 small text-gray-500 toggling mb-2" data-target="opinions">
+    <div class="col-2 small text-gray-500 toggling mb-2" data-target="comments{{ $opinion->id }}">
         <div class="{{ ($opinion->user->id == Auth::user()->id) ? 'bg-warning' : '' }}">
             {{ Carbon\Carbon::make($opinion->updated_at)->isoformat('D MMM YY') }}, <a href="/user/{{ $opinion->user->id }}">{{ $opinion->user->name }}</a>
         </div>
@@ -27,7 +27,7 @@
     </div>
 
     <!-- Comments made by users on that opinion -->
-    <div id="opinions" class="d-none">
+    <div id="comments{{ $opinion->id }}" class="d-none">
         @foreach ($opinion->comments as $comment)
             <div class="row">
                 <div class="col-3 small text-gray-500 text-right">
