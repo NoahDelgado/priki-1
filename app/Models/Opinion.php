@@ -9,6 +9,10 @@ class Opinion extends Model
 {
     use HasFactory;
 
+    /**
+     * The user who posted the opinion
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -16,6 +20,7 @@ class Opinion extends Model
 
     /**
      * Comments registered about an opinion
+     * BEWARE : the relationship is named comments but returns Users
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function comments()
@@ -23,9 +28,14 @@ class Opinion extends Model
         return $this->belongsToMany(User::class, 'user_opinion')->withPivot('comment', 'points');
     }
 
+    /**
+     * Returns true if and only if the given user has posted a comment on this opinion
+     * @param User $user
+     * @return bool
+     */
     public function isCommentedBy(User $user)
     {
-        return false;
+        return $this->comments()->where('users.id',$user->id)->count() > 0; // 'users.id' to avoid ambiguity in the SQL request's column name
     }
 
     public function practice()
