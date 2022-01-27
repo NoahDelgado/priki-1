@@ -40,4 +40,13 @@ class PracticeController extends Controller
         $practice->publish();
         return redirect(route('home'))->with('success', "Pratique publiée");
     }
+    public function changeTitle(Request $request)
+    {
+        $practice = Practice::find($request->input('practice'));
+        if ($request->user()->cannot('edit', $practice)) {
+            abort(403);
+        }
+        $practice->editTitle($request->input('title'));
+        return redirect(route('home'))->with('success', "Modification Réussi");
+    }
 }
