@@ -26,16 +26,16 @@
             <div class="row">
                 <div class="col-1 border bg-light">Etat</div>
                 <div class="col-11">{{ $practice->publicationState->name }}</div>
-                @can ('publish', $practice)
-                    <x-publish-practice-form :id="$practice->id"/>
+                @can('publish', $practice)
+                    <x-publish-practice-form :id="$practice->id" />
                 @endcan
             </div>
         </div>
 
-        <x-opinion-list :opinions="$practice->opinions"/>
+        <x-opinion-list :opinions="$practice->opinions" />
 
         @if (!$practice->opinionOf(Auth::user()))
-            <x-opinion-form :on="$practice->id"/>
+            <x-opinion-form :on="$practice->id" />
         @endif
     </div>
 @endsection
