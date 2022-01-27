@@ -17,9 +17,9 @@ use \App\Http\Controllers\OpinionController;
 |
 */
 
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/home/{nbDays}', [HomeController::class, 'index']);
+Route::get('/home/{nbDays}', [HomeController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/domain/{id}', [DomainController::class, 'index']);
@@ -27,8 +27,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/practices/publish', [PracticeController::class, 'publish'])->name('practices.publish');
     Route::get('/practices/{id}', [PracticeController::class, 'show']);
     Route::resource('references', ReferenceController::class);
-    Route::post('/opinion',[OpinionController::class,'store']);
-    Route::post('/opinion/comment',[OpinionController::class,'comment']);
+    Route::post('/titlechange', [PracticeController::class, 'changeTitle']);
+    Route::post('/opinion', [OpinionController::class, 'store']);
+    Route::post('/opinion/comment', [OpinionController::class, 'comment']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
