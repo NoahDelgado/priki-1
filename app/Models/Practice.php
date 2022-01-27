@@ -28,6 +28,10 @@ class Practice extends Model
     {
         return $this->hasMany(Opinion::class);
     }
+    public function changelogs()
+    {
+        return $this->hasMany(Changelog::class);
+    }
 
     /**
      * Returns the opinion of the given user about this practice
