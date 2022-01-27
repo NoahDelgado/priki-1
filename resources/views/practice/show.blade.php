@@ -12,6 +12,8 @@
                 <form action="/titlechange" method="post">
                     @csrf
                     <input type="hidden" value="{{ $practice->id }}" name="practice">
+                    <input type="hidden" value="{{ $practice->title }}" name="oldtitle">
+
                     <div class="bg-warning">
                         Nouveau titre:
                     </div>
@@ -64,5 +66,24 @@
         @if (!$practice->opinionOf(Auth::user()))
             <x-opinion-form :on="$practice->id" />
         @endif
+
+        <div>
+            <div class="h5">historique</div>
+            @forelse($practice->changelogs as $log)
+                <div class "row">
+                    <p>
+
+                    <div>utilisateur: {{ $log->user->name }}</div>
+                    <div>Raison: {{ $log->reason }}</div>
+                    <div>Ancient titre: {{ $log->previously }}</div>
+                    <div>Date: {{ $log->updated_at }}</div>
+                    </p>
+
+                </div>
+            @empty
+                <p>Aucun</p>
+            @endforelse
+        </div>
+
     </div>
 @endsection
