@@ -3,6 +3,9 @@
 @section('content')
     <div class="container p-3">
         <div class="row text-xl">
+            <p>Titre : {{ $practice->title }}</p>
+        </div>
+        <div class="row text-xl">
             <p>{{ $practice->description }}</p>
             <p class="text-right"><i class="fa fa-info-circle toggling float-right" data-target="details"></i></p>
         </div>
