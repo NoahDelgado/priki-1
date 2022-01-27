@@ -115,4 +115,12 @@ class PracticePolicy
             return false;
         }
     }
+    public function edit(User $user, Practice $practice)
+    {
+        if ($user->role->slug != 'MOD' && $practice->user_id != $user->id) { // User must be moderator or an owner
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
