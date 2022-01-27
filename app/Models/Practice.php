@@ -34,9 +34,9 @@ class Practice extends Model
      * @param User $user
      * @return Opinion
      */
-    public function opinionOf (User $user) : ?Opinion
+    public function opinionOf(User $user): ?Opinion
     {
-        return $this->opinions()->where('user_id',$user->id)->first('description');
+        return $this->opinions()->where('user_id', $user->id)->first('description');
     }
 
     public function publicationState()
@@ -60,7 +60,7 @@ class Practice extends Model
      */
     public function publish()
     {
-        $this->publicationState()->associate(PublicationState::where('slug','PUB')->first());
+        $this->publicationState()->associate(PublicationState::where('slug', 'PUB')->first());
         $this->save();
     }
 
@@ -82,5 +82,9 @@ class Practice extends Model
     {
         return self::published()->where('updated_at', '>=', Carbon::now()->subDays($nbDays))->get();
     }
-
+    public function editTitle($title)
+    {
+        $this->title = $title;
+        $this->save();
+    }
 }
