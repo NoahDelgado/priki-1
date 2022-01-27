@@ -3,7 +3,31 @@
 @section('content')
     <div class="container p-3">
         <div class="row text-xl">
-            <p>Titre : {{ $practice->title }}</p>
+            <p>Titre : {{ $practice->title }}
+                <i class="fa fa-edit toggling float-right" data-target="edit"></i>
+            </p>
+        </div>
+        <div id="edit" class="d-none">
+            <div class="col-10 row">
+                <form action="/titlechange" method="post">
+                    @csrf
+                    <input type="hidden" value="{{ $practice->id }}" name="practice">
+                    <div class="bg-warning">
+                        Nouveau titre:
+                    </div>
+                    <div class="row">
+                        <input type="text" id="title" name="title" class="col-10" value="{{ $practice->title }}"
+                            required>
+                    </div>
+                    <div class=" bg-warning">
+                        Raison du changement:
+                    </div>
+                    <div class="row">
+                        <textarea type="text" id="reason" name="reason" class="col-10"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary col-2">Enregistre</button>
+                </form>
+            </div>
         </div>
         <div class="row text-xl">
             <p>{{ $practice->description }}</p>
