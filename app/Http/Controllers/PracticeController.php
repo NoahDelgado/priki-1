@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Practice;
-use App\Models\PublicationState;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Auth;
+use App\Models\ChangeLog;
 use Illuminate\Http\Request;
+use App\Models\PublicationState;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PracticeController extends Controller
 {
@@ -47,6 +49,17 @@ class PracticeController extends Controller
             abort(403);
         }
         $practice->editTitle($request->input('title'));
+        $history = new Changelog();
+        if ($request->input('reason') != null) {
+            $history->reason = $request->input('reason');
+        }
+        $history->created_at = Carbon::now()->subMinutes(rand(1, 5 * 24 * 60));
+        $history->updated_at = Carbon::now()->subMinutes(rand(1, 5 * 24 * 60));
+        $history->previously = $request->input('oldtitle');
+        $history->practice_id = $request->input('practice');
+        $history->user_id = Auth::user()->id;
+        $history->save();
+
         return redirect(route('home'))->with('success', "Modification Réussi");
     }
 }
